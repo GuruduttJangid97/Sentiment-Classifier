@@ -35,7 +35,6 @@ def get_pos(str):
 
 # list of negative words to use
 negative_word = []
-
 with open("assets/negative_words.txt") as pos_f:
     for line in pos_f:
         if line[0]!=";"and line[0]!="\n":
@@ -53,6 +52,3 @@ def get_neg(str):
             count += 1
     return count
     
-#Testing Function
-print(get_neg('sad'))
-print(get_pos('happy')) 
