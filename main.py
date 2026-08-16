@@ -1,37 +1,59 @@
 import csv
 from sentiment import get_pos, get_neg
+import matplotlib.pyplot as plt
 
-#Reading Data from CSV file 
+
+# Reading Data from CSV file
 with open("assets/project_twitter_data.csv") as file:
     reader = csv.DictReader(file)
 
-#Writng Data To CSV File
-    with open("resulting_data.csv", mode="w", newline="", encoding="utf-8") as ouput_file:
-        writer = csv.writer(ouput_file)
+    # Writing Data To CSV File
+    with open("resulting_data.csv", mode="w", newline="", encoding="utf-8") as output_file:
+        writer = csv.writer(output_file)
 
-#Writing Header To CSV File 
+        # Writing Header To CSV File
         writer.writerow([
-            "Number of Retweets",
-            "Number of Replies",
-            "Positive Scores",
-            "Negative Scores",
-            "Net Scores"
+            "Number_Of_Retweets",
+            "Number_of_Replies",
+            "Positive_Scores",
+            "Negative_Scores",
+            "Net_Scores"
         ])
-#Iterate Sequence
+
+        # Iterate Sequence
         for row in reader:
-            Tweet_text = row['tweet_text']
-            Retweet_count = int(row['retweet_count'])
-            Reply_count = int(row['reply_count'])
+            tweet_text = row["tweet_text"]
+            retweet_count = int(row["retweet_count"])
+            reply_count = int(row["reply_count"])
 
-            Positive_Score = get_pos(Tweet_text)
-            Negative_Score = get_neg(Tweet_text)
+            positive_score = get_pos(tweet_text)
+            negative_score = get_neg(tweet_text)
 
-            Net_Score = Positive_Score - Negative_Score
+            net_score = positive_score - negative_score
 
             writer.writerow([
-                Retweet_count,
-                Reply_count,
-                Positive_Score,
-                Negative_Score,
-                Net_Score
+                retweet_count,
+                reply_count,
+                positive_score,
+                negative_score,
+                net_score
             ])
+
+
+# To Generate Scatter Plot
+retweets = []
+net_scores = []
+
+with open("resulting_data.csv") as file:
+    reader = csv.DictReader(file)
+
+    for data in reader:
+        retweets.append(int(data["Number_Of_Retweets"]))
+        net_scores.append(int(data["Net_Scores"]))
+
+
+plt.scatter(retweets, net_scores)
+plt.xlabel("Number of Retweets")
+plt.ylabel("Net Score")
+plt.title("Number of Retweets vs Net Score")
+plt.show()
