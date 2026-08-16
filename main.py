@@ -52,9 +52,10 @@ with open("resulting_data.csv") as file:
         net_scores.append(int(data["Net_Scores"]))
 
 
-plt.scatter(retweets, net_scores)
-plt.xlabel("Number of Retweets")
-plt.ylabel("Net Score")
-plt.title("Number of Retweets vs Net Score")
+plt.scatter(net_scores, retweets)
+
+plt.xlabel("Net Score")
+plt.ylabel("Number of Retweets")
+plt.title("Net Score vs Number of Retweets")
 plt.savefig("scatter_plot.png", bbox_inches="tight")
 plt.show()
