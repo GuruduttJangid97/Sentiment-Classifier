@@ -34,7 +34,7 @@ twitter-sentiment-classifier/
 ├── assets/
     ├── negative_words.txt
     ├── positive_words.txt
-│   └── project_twitter_data.csv
+    └── project_twitter_data.csv
 │
 ├── main.py
 ├── sentiment.py
