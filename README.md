@@ -32,6 +32,8 @@ The results are saved to a new CSV file and visualized using a scatter plot.
 twitter-sentiment-classifier/
 │
 ├── assets/
+    ├── negative_words.txt
+    ├── positive_words.txt
 │   └── project_twitter_data.csv
 │
 ├── main.py
